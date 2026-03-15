@@ -60,9 +60,8 @@ jobs:
         run: |
           set -e
           archive="${{ runner.temp }}/libcurl-impersonate.x86_64-linux-gnu.tar.gz"
-          tar -C "${{ runner.temp }}/install" -czf "$archive" \
-            lib/libcurl-impersonate.so* \
-            include/curl
+          cd "${{ runner.temp }}/install"
+          tar -czf "$archive" lib/libcurl-impersonate.so* include/curl
           echo "release_file_lib=$archive" >> "$GITHUB_ENV"
 
       - name: Upload artifacts
